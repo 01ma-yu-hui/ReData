@@ -9,7 +9,7 @@ package com.atguigu.hashtab;
  */
 public class HashTabDemo {
     public static void main(String[] args) {
-        System.out.println("myh);
+        System.out.println("myh");
     }
 }
 
