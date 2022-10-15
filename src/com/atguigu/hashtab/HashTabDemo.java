@@ -114,8 +114,8 @@ class EmpLinkedList{
     private Emp head;   //默认为null
 
     //添加雇员到链表（即给链表添加节点）
-    //说明
-    //1.假定，当添加雇员是，id自增。因此将节点加入到本链表的最后即可。
+        //说明
+            //1.假定，当添加雇员是，id自增。因此将节点加入到本链表的最后即可。
     public void add(Emp emp){
         //如果是添加第一个节点
         if (head==null){
@@ -155,7 +155,7 @@ class EmpLinkedList{
     }
 
     //根据id来查找雇员
-    //如果查找到就返回Emp，如果没有查找到就返回null
+        //如果查找到就返回Emp，如果没有查找到就返回null
     public Emp findEmpById(int id){
         //判断链表是否为null
         if (head == null){
