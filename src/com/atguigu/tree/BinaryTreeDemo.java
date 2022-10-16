@@ -31,12 +31,12 @@ public class BinaryTreeDemo {
         //测试
         System.out.println("前序遍历:");
         binaryTree.preOrder();
-        /*//测试
+        //测试
         System.out.println("中序遍历:");
         binaryTree.infixOrder();
         //测试
         System.out.println("后序遍历:");
-        binaryTree.postOrder();*/
+        binaryTree.postOrder();
 
         /*//测试前序查找
         System.out.println("前序遍历方式~~~");
@@ -63,11 +63,11 @@ public class BinaryTreeDemo {
             System.out.println("没有该节点");
         }*/
 
-        //测试删除节点
+        /*//测试删除节点
         binaryTree.delNode(7);
         //测试
         System.out.println("前序遍历:");
-        binaryTree.preOrder();
+        binaryTree.preOrder();*/
     }
 }
 
