@@ -57,6 +57,7 @@ class BinaryTree{
         if (pre != null && pre.getRight() == null){
             //让前驱节点的右指针指向当前的节点
             pre.setRight(node);
+
             //修改前驱节点的右值针的类型
             pre.setRightType(1);
         }
