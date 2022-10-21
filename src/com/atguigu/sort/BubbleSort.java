@@ -79,8 +79,8 @@ public class BubbleSort {
     public static void bubbleSort(int[] arr){
         int tmp = 0;//临时变量
         boolean flag = false;//标识变量，表示是否进行过交换
-        for (int i = 0; i< arr.length-1;i++) {
-            for (int j = 0; j < arr.length - 1 -i; j++) {
+        for (int i = 0; i< arr.length-1;i++) {  //该for循环表示：每一循环，都找出一个最大的数。若有n个数，则循环n-1次
+            for (int j = 0; j < arr.length - 1 -i; j++) {   //具体找大数的过程，之前循环已经沉淀的大数就不用比较了，因此与 -i
                 //如果前面的数比后面的数大，则交换
                 if (arr[j] > arr[j + 1]) {
                     flag = true;
