@@ -9,7 +9,7 @@ package com.atguigu.binarysorttree;
  */
 public class BinarySortTreeDemo {
     public static void main(String[] args) {
-        int[] arr = new int[]{7,3,10,12,5,1,9,2};
+        int[] arr = new int[]{7,8};
         BinarySortTree binarySortTree = new BinarySortTree();
         //循环的添加节点到二叉排序树
         for (int i = 0; i < arr.length; i++) {
@@ -19,7 +19,7 @@ public class BinarySortTreeDemo {
         binarySortTree.infixOrder();
         //测试删除叶子节点
         System.out.println("------测试删除------");
-        binarySortTree.delNode(10);
+        binarySortTree.delNode(7);
         binarySortTree.infixOrder();
     }
 }
@@ -49,7 +49,7 @@ class BinarySortTree{
         }
     }
 
-    //编写方法:1.返回以node为根节点的二叉排序树的最小节点的值 2.以node为根节点的二叉排序树的最小节点
+    //编写方法:1.返回以node为根节点的二叉排序树的最小节点的值 2.删除以node为根节点的二叉排序树的最小节点
     /**
      * @param node 传入的节点(当作二叉排序树的根节点)
      * @return 返回的是以node为根节点的二叉排序树的最小节点的值
@@ -100,18 +100,37 @@ class BinarySortTree{
             } else {    //删除只有一颗子树的节点
                 //如果要删除的节点有左子节点
                 if (targetNode.left != null){
-                    //如果要删除的节点是parent的左子节点
-                    if (parent.left.value == value){
-                        parent.left = targetNode.left;
-                    }else {//如果要删除的节点是parent的右子节点
-                        parent.right = targetNode.left;
+                    if (parent != null){
+                        //如果要删除的节点是parent的左子节点
+                        if (parent.left.value == value){
+                            parent.left = targetNode.left;
+                        }else {//如果要删除的节点是parent的右子节点
+                            parent.right = targetNode.left;
+                        }
+                    }else {
+                        //parent为null
+                        //我的方法
+                        root.value = targetNode.left.value;
+                        root.left = null;
+
+                        //老师的方法
+                        //root = targetNode.left
+                            //解释：将targetNode.left的节点赋值给root节点，因为targetNode.left为叶子节点，即左右指针均为空
+                            //最终BST中只存在targetNode.left节点
                     }
+
                 }else { //要删除的节点有右子节点
-                    //如果要删除的节点是parent的左子节点
-                    if (parent.left.value == value){
-                        parent.left = targetNode.right;
-                    }else {//如果要删除的节点是parent的右子节点
-                        parent.right = targetNode.right;
+                    if (parent != null){
+                        //如果要删除的节点是parent的左子节点
+                        if (parent.left.value == value){
+                            parent.left = targetNode.right;
+                        }else {//如果要删除的节点是parent的右子节点
+                            parent.right = targetNode.right;
+                        }
+                    }else {
+                        //parent为null
+                        root.value = targetNode.right.value;
+                        root.right = null;
                     }
                 }
             }
