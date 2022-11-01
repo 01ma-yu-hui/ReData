@@ -14,6 +14,7 @@ public class Graph {
     private ArrayList<String> vertexList;//存储顶点的集合
     private int[][] edges;//图的表示方式：邻接矩阵
     private int numOfEdges;//表示边的个数
+    private boolean[] isVisited;//定义一个数组boolean[],记录某个节点是否被访问
 
     public static void main(String[] args) {
         //测试
@@ -37,7 +38,9 @@ public class Graph {
         int numOfEdges = graph.getNumOfEdges();
         System.out.printf("该图有%d条边\n",numOfEdges);
 
-
+        //测试DFS
+        System.out.println("DFS");
+        graph.dfs();
     }
 
     //构造器
@@ -46,7 +49,70 @@ public class Graph {
         edges = new int[n][n];
         vertexList = new ArrayList<String>(n);  //代表放n个数据进去
         numOfEdges = 0;
+        isVisited = new boolean[5];//给数组进行初始化
     }
+
+    //根据当前节点的下标得到第一个邻接节点的下标w
+
+    /**
+     * @param index 该节点的下标
+     * @return 返回邻接节点的下标w，若没有邻接节点，则返回-1；
+     */
+    public int getFirstNeighbor(int index){
+        for (int j = 0; j < vertexList.size(); j++) {
+            if (edges[index][j] > 0){//edges[index][j]>0说明，index对应的值与j对应的值邻接
+                return j;
+            }
+        }
+        return -1;
+    }
+
+    //根据当前节点和第一个邻接节点来获取当前节点的第二个邻接节点
+
+    /**
+     * @param v1 是当前节点的下标
+     * @param v2 上一个邻接节点的下标
+     * @return
+     */
+    public int getNextNeighbor(int v1,int v2){
+        for (int j = v2 + 1; j < vertexList.size(); j++) {
+            if (edges[v1][j] > 0){
+                return j;
+            }
+        }
+        return -1;
+    }
+
+    //深度优先(DFS)遍历算法
+    //i第一次就是0
+
+    private void dfs(boolean[] isVisited,int i){
+        //首先我们访问该节点（输出）
+        System.out.print(getValueByIndex(i) + "->");
+        //将节点至为已访问
+        isVisited[i] = true;
+        //查找节点i的第一个邻接节点w
+        int w = getFirstNeighbor(i);
+        while (w != -1){//说明有
+            //判断邻接节点有没有被访问过
+            if (!isVisited[w]){
+                dfs(isVisited,w);//对w进行深度优先遍历递归
+            }
+                //如果w节点已经被访问过,则去找当前节点的其他邻接节点
+                w = getNextNeighbor(i, w);
+        }
+    }
+
+    //对DFS进行一个重载,遍历我们所有的节点，并进行DFS
+    public void dfs(){
+        //遍历所有的节点，进行DFS[回溯]
+        for (int i = 0; i < getNumOfVertex(); i++) {
+            if (!isVisited[i]){//若i没有被访问
+                dfs(isVisited,i);
+            }
+        }
+    }
+
 
     //返回节点的个数
     public int getNumOfVertex(){
