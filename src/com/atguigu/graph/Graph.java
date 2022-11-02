@@ -1,6 +1,7 @@
 package com.atguigu.graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * @Description: // 类说明，在创建类时要填写
@@ -39,8 +40,12 @@ public class Graph {
         System.out.printf("该图有%d条边\n",numOfEdges);
 
         //测试DFS
-        System.out.println("DFS");
-        graph.dfs();
+        /*System.out.println("DFS");
+        graph.dfs();*/
+
+        //测试BFS
+        System.out.println("BFS");
+        graph.bfs();
     }
 
     //构造器
@@ -96,7 +101,7 @@ public class Graph {
         while (w != -1){//说明有
             //判断邻接节点有没有被访问过
             if (!isVisited[w]){
-                dfs(isVisited,w);//对w进行深度优先遍历递归
+                dfs(isVisited,w);//对w进行深度优先遍历递归,体现DFS
             }
                 //如果w节点已经被访问过,则去找当前节点的其他邻接节点
                 w = getNextNeighbor(i, w);
@@ -113,6 +118,47 @@ public class Graph {
         }
     }
 
+    //对一个节点进行广度优先遍历的方法
+    private void bfs(boolean[] isVisited,int i){
+        int u ;  //表示队列的头节点对应的下标
+        int w ; //表示邻接节点的下标
+        LinkedList<Object> queue = new LinkedList<>(); //队列，记录节点访问的顺序
+        //访问节点，输出节点的信息
+        System.out.print(getValueByIndex(i)+"=>");
+        //标记为已经访问
+        isVisited[i] = true;
+        //将节点加入队列
+        queue.addLast(i);
+        while (!queue.isEmpty()){
+            //取出队列的头节点下标
+            u = (Integer)queue.removeFirst();
+            //得到头节点的第一个邻接节点的下标
+            w = getFirstNeighbor(u);
+            //判断节点w是否存在
+            while (w != -1){    //节点存在
+                //判断节点是否访问过
+                if (!isVisited[w]){ //说明节点没有被访问过
+                    //访问节点，输出节点的信息
+                    System.out.print(getValueByIndex(w)+"=>");
+                    //标记已经访问
+                    isVisited[w] = true;
+                    //加入队列
+                    queue.addLast(w);
+                }
+                //若节点已经被访问过了,则找u的下下个邻接节点
+                w = getNextNeighbor(u, w);  //体现BFS，因为这里始终是u，不往下走。
+            }
+        }
+    }
+
+    //遍历所有的节点，都进行BFS
+    public void bfs(){
+        for (int i = 0; i < getNumOfVertex(); i++) {
+            if (!isVisited[i]){
+                bfs(isVisited,i);
+            }
+        }
+    }
 
     //返回节点的个数
     public int getNumOfVertex(){
