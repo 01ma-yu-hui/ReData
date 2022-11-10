@@ -35,7 +35,7 @@ public class KMPAlgorithm {
             //需要处理str1.charAt(i) != str2.charAt(j),去调整j的大小
             while (j > 0 && str1.charAt(i) != str2.charAt(j)){
                 j = next[j - 1];    //当文本串与模式串匹配不上时，应该将J的前一个位置的next值赋给J
-                // (即，将前缀的字符串放在后缀的位置上),然后继续看
+                // (即，将前缀的字符串放在后缀的位置上),然后继续比较
             }
             if (str1.charAt(i) == str2.charAt(j)){
                 j++;
