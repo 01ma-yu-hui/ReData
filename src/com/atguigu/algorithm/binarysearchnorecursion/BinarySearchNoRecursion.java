@@ -9,7 +9,7 @@ package com.atguigu.algorithm.binarysearchnorecursion;
  */
 public class BinarySearchNoRecursion {
     public static void main(String[] args) {
-        //测试。左
+        //测试。右
         int[] arr = new int[]{1,3,8,10,11,67,100};
         int i = binarySearch(arr, 100);
         System.out.println(i);
