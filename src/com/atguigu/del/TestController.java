@@ -8,4 +8,7 @@ package com.atguigu.del;
  * @Version: 1.0     // 版本
  */
 public class TestController   {
+    public static void main(String[] args) {
+
+    }
 }
