@@ -17,7 +17,7 @@ public class QuickSort {
 /*        int[] arr = {6,1,2,7,9,3,4,5,10,8};
         quickSort(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));*/
-        int[] arr=new int[80000000];
+        int[] arr=new int[80000001];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int)(Math.random()*800000000);
         }
