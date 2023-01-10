@@ -118,7 +118,7 @@ public class Graph {
         }
     }
 
-    //对一个节点进行广度优先遍历的方法
+    //对一个节点进行广度优先遍历的方法.
     private void bfs(boolean[] isVisited,int i){
         int u ;  //表示队列的头节点对应的下标
         int w ; //表示邻接节点的下标
